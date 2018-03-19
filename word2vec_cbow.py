@@ -11,6 +11,7 @@ import random
 import collections
 
 #reading, restricting, and encoding the wikipedia corpus
+#expects data file to be in a subdirectory called data
 file_path = './data/wiki'
 data = open(file_path).read().split(" ")
 print('Collected Data.')
