@@ -85,7 +85,7 @@ num_sampled = 64
 
 with graph.as_default():
 	
-	#B * C  input matrix
+	# B * C  input matrix
 	x_train = tf.placeholder(tf.int32, shape=(batch_size, 2*window)) 
 	# B labels 
 	y_train = tf.placeholder(tf.int32, shape=(batch_size, 1))
@@ -101,9 +101,9 @@ with graph.as_default():
 	# take mean over dimension C to get a B * N matrix + bias
 	hidden_layer = tf.reduce_mean(relevant_embeddings, axis=1) + b1 
 	
-	#Noise Contrastive Estimation loss to speed up. 
+	# Noise Contrastive Estimation loss to speed up. 
 	nce_w = tf.Variable(tf.truncated_normal([vocab_size, embed_size], stddev=1.0 / tf.sqrt(1.0 * embed_size)), name = 'nce_w') 
-	#V matrix, bias for each vocab word
+	# V matrix, bias for each vocab word
 	nce_b = tf.Variable(tf.random_normal([vocab_size]), name = 'nce_b') 
 
 	loss = tf.reduce_mean(tf.nn.nce_loss(weights=nce_w, biases=nce_b, labels=y_train, 
@@ -143,6 +143,5 @@ with tf.Session(graph=graph) as sess:
 				print('Average loss is ', avg_loss, ' at step ', i)
 				print('Average accuracy is', avg_acc, 'at step', i)
 				avg_loss = 0	
-	#TODO change this to only saving the embedding variable 
 	saver.save(sess, './models/model-final') 
 	print("Final model saved")
