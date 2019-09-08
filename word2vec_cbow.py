@@ -135,7 +135,7 @@ with tf.Session(graph=graph) as sess:
 		avg_loss+=loss_val
 		avg_acc+= acc_val
 		print('for batch at step', i, 'accuracy value is ', acc_val)
-		#every 1000 steps
+		#every 2000 steps
 		if (i%2000) == 0: 
 			if i > 0:
 				avg_loss/=2000
